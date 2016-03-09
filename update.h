@@ -1,69 +1,62 @@
 #ifndef UPDATE_H
 #define UPDATE_H
-//#include <QDialog>
-//#include "lineedit.h"
-//#include <QtNetwork/QFtp>
-//#include <QtGui>
 
-//class QLabel;
-//class QDialogButtonBox;
-//class QProgressDialog;
-//class Update : public QDialog
-//{
-//    Q_OBJECT
-//public:
-//    Update(QWidget *parent = 0);
+#include <QtWidgets>
+#include <QtNetwork>
 
-//public slots:
-//    void iniVersion();
+class Update : public QDialog
+{
+    Q_OBJECT
+public:
+    Update(QWidget *parent = 0);
 
-//private slots:
-//    bool newVersion();
+public slots:
+    void iniVersion();
 
-//    void exeVersion();
-//    void tranceVersion();
+private slots:
+    bool newVersion();
 
-//    void cancelDownLoadIni();
-//    void cancelDownLoadExe();
-//    void cancelDownLoadTrance();
+    void exeVersion();
+    void tranceVersion();
 
-//    void restartProgramm();
+    void cancelDownLoadIni();
+    void cancelDownLoadExe();
+    void cancelDownLoadTrance();
 
-//    void ftpCommandFinishedIni(int, bool error);
-//    void ftpCommandFinishedExe(int , bool error);
-//    void ftpCommandFinishedTrance(int, bool error);
-//    void updateDataTransferProgress(qint64 readBytes, qint64 totalBytes);
+    void restartProgramm();
 
-//    void closeConnection();
+    void httpDoneIni();
+    void httpDoneExe();
+    void httpDoneTrance();
 
-//private:
-//    QPushButton *getPushButton;
-//    QPushButton *putPushButton;
-//    QPushButton *cancelPushButton;
-//    QDialogButtonBox *buttonBox;
+    void closeConnection();
 
-//    QLabel *urlName;
-//    QLabel *userName;
-//    QLabel *passwordName;
+    void updateDataReadProgressExe(qint64, qint64);
+    void updateDataReadProgressTrance(qint64, qint64);
 
-//    LineEdit *urlEdit;
-//    LineEdit *userEdit;
-//    LineEdit *passwordEdit;
+    void httpReadyReadIni();
+    void httpReadyReadExe();
+    void httpReadyReadTrance();
 
-//    QFtp *ftpIni;
-//    QFtp *ftpExe;
-//    QFtp *ftpTrance;
+private:
+    QUrl url;
 
-//    QFile *fileIni;
-//    QFile *fileExe;
-//    QFile *fileTrance;
+    QNetworkAccessManager httpIni;
+    QNetworkAccessManager httpExe;
+    QNetworkAccessManager httpTrance;
 
-//    QProgressDialog *progressDialogIni;
-//    QProgressDialog *progressDialogExe;
-//    QProgressDialog *progressDialogTrance;
+    QNetworkReply *replyIni;
+    QNetworkReply *replyExe;
+    QNetworkReply *replyTrance;
 
-//    //For Debug
-//    QString urlString;
-//};
+    QFile *fileHttpIni;
+    QFile *fileHttpExe;
+    QFile *fileHttpTrance;
+    QString nowVersion;
+
+    QProgressDialog *progressDialogIni;
+    QProgressDialog *progressDialogExe;
+    QProgressDialog *progressDialogTrance;
+};
 
 #endif // UPDATE_H

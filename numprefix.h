@@ -1,13 +1,13 @@
 #ifndef NUMPREFIX_H
 #define NUMPREFIX_H
 
-#include <QDialog>
+#include <QObject>
 
-class NumPrefix : public QDialog
+class NumPrefix : public QObject
 {
     Q_OBJECT
 public:
-    NumPrefix(QWidget *parent = 0);
+    NumPrefix();
 
 public slots:
     QString getPrefix(QString tableName);

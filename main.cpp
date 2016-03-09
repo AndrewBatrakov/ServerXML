@@ -1,7 +1,8 @@
 #include <QtGui>
 #include <cstdlib>
-#include "mainwindow.h"
 #include "databasedirection.h"
+#include "update.h"
+#include "readxml.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,11 +10,13 @@ int main(int argc, char *argv[])
 
     QApplication::setQuitOnLastWindowClosed(false);
 
+    Update update;
+    update.iniVersion();
+
     DataBaseDirection dir;
     dir.connectDataBase();
-
-    MainWindow w;
-    w.startProcedure();
     
+    ReadXML readXML;
+
     return a.exec();
 }

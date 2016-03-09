@@ -2,16 +2,14 @@
 #define DATABASEDIRECTION_H
 
 #include <QtSql>
-#include <QtWidgets/QtWidgets>
 
-class DataBaseDirection : public QDialog
+class DataBaseDirection : public QObject
 {
     Q_OBJECT
 public:
     DataBaseDirection();
 
 public:
-    void createDataBase(QString base);
     bool connectDataBase();
 
 };
